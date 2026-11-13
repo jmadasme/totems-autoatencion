@@ -1,0 +1,55 @@
+# Configuración NO sensible del tótem.
+# Las credenciales Getnet y valores sensibles se leen de .env (fuera de git).
+# Las variables de entorno tienen precedencia sobre este archivo.
+
+app:
+  host: 0.0.0.0
+  port: 8000
+  idle_timeout_seconds: 60
+  order_timeout_seconds: 120
+  currency: CLP
+  min_amount: 1
+  max_amount: 999999
+
+getnet:
+  # usb | http | cloud | app2app
+  connector: usb
+  baudrate: 57600
+  # Si serial_port queda vacío, se autodetecta el IM30 por by-id.
+  serial_port: ""
+  # Interfaz preferida del PAX IM30: if02 (ttyACM1) o if04 (ttyACM2).
+  serial_port_preference: if02
+  # Reintentos ante errores transitorios de transporte.
+  max_retries: 2
+  retry_backoff_seconds: 1.0
+  http:
+    host: 127.0.0.1
+    port: 8080
+  cloud:
+    url: ""
+  # App2App: dispara la app de pagos de Getnet por ADB (Intents Android).
+  app2app:
+    adb_path: adb
+    package: cl.getnet.payment.prod2
+    activity: cl.getnet.payment.ApiActivity
+    payment_timeout_ms: 120000
+    place_card_timeout_ms: 60000
+    poll_interval_seconds: 1.5
+    print_on_pos: false
+  # Framing configurable del protocolo serie (propietario, no público).
+  serial:
+    framing:
+      start_delimiter: "STX"   # STX | 0x02 | "" 
+      end_delimiter: "ETX"     # ETX | 0x03 | ""
+      include_length: true
+      checksum: "lrc"          # none | lrc | sum | crc16
+      read_timeout: 2.0
+      write_timeout: 2.0
+      inter_byte_timeout: 0.5
+
+# Parámetros del conector simulado (modo GETNET_MODE=simulation).
+simulation:
+  outcome: approved            # approved | declined | timeout | error | random
+  refund_outcome: approved     # approved | declined | error
+  delay_seconds: 1.5
+  approve_probability: 1.0

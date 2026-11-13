@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Entorno virtual
+venv/
+.venv/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Variables de entorno
+.env
+
+# Editor
+.vscode/
+.idea/
+
+# Documentación de planificación (generada por el analista)
+PLAN.md
+AUDIT_REPORT.md
