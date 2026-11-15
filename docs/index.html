@@ -156,6 +156,39 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 .rich .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
 .rich .card-grid .card{margin:0}
 
+
+.rich h3{margin:26px 0 8px}
+.rich p{margin:0 0 14px;color:var(--muted);line-height:1.7}
+.fail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:6px}
+.fail{background:rgba(11,34,43,.55);border:1px solid var(--line);border-radius:14px;padding:18px}
+.fail .v{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--warm,#D6A86A)}
+.fail h3{font-size:16px;margin:8px 0 6px}
+.fail p{font-size:14px;margin:0;color:var(--muted)}
+.rating-head{display:flex;align-items:center;gap:20px;margin:6px 0 18px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:rgba(11,34,43,.55)}
+.rating-avg{font-family:var(--mono);font-size:40px;line-height:1;color:var(--accent)}
+.rating-avg small{font-size:14px;color:var(--muted)}
+.rating-head p{margin:4px 0 0;font-size:14px;color:var(--muted);max-width:70ch}
+.rating{display:grid;gap:2px}
+.rating-row{display:grid;grid-template-columns:165px minmax(90px,1fr) 48px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.rating-row:last-child{border-bottom:0}
+.rating-name{font-size:13.5px;font-weight:600}
+.rating-bar{height:6px;border-radius:99px;background:rgba(148,190,200,.14);overflow:hidden}
+.rating-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.rating-score{font-family:var(--mono);font-size:12.5px;color:var(--accent);text-align:right}
+.rating-note{grid-column:2/-1;font-size:12.5px;color:var(--muted);margin-top:-4px}
+.faq{display:grid;gap:0;margin-top:4px}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";display:inline-block;width:18px;color:var(--accent);font-family:var(--mono)}
+.faq details[open] summary::before{content:"–"}
+.faq p{margin:10px 0 0 18px;font-size:14px;color:var(--muted)}
+@media(max-width:720px){
+  .fail-grid{grid-template-columns:1fr}
+  .rating-head{flex-direction:column;align-items:flex-start}
+  .rating-row{grid-template-columns:120px 1fr 44px}
+}
+
 </style>
 <link rel="stylesheet" href="assets/community.css?v=1">
 </head>
@@ -188,15 +221,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 
 <section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-num">3</div><div class="stat-label">versiones</div></div><div class="stat"><div class="stat-num">1080x1920</div><div class="stat-label">pantalla</div></div><div class="stat"><div class="stat-num">1</div><div class="stat-label">exe</div></div><div class="stat"><div class="stat-num">Getnet</div><div class="stat-label">pagos</div></div></div></section>
 
-<section class="section" id="proyecto"><div class="wrap">
-  <div class="section-head reveal"><div class="kicker">01 — El proyecto</div><h2>Qué resuelve</h2><p class="section-sub">Tres implementaciones de autoatención para distintos contextos: un tótem de tickets en C con panel de llamadas, un carrito web para pantalla vertical y una integración con terminal de pago Getnet.</p></div>
-  <div class="two">
-    <div class="card reveal"><span class="tag">Problema</span><h3>El punto de partida</h3><p>Cada tótem se arma desde cero y termina con dependencias que no sobreviven al equipo de soporte ni al reinicio.</p></div>
-    <div class="card reveal"><span class="tag">Solución</span><h3>La propuesta</h3><p>Tres patrones concretos: binario único para tickets, web estático para carrito y SDK de pago aislado para la terminal.</p></div>
-  </div>
-</div></section>
-
-<section class="section" id="versiones"><div class="wrap">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2></div><div class="rich reveal"><p>Tótems de Autoatención reúne tres implementaciones del mismo problema: atender a alguien sin una persona detrás del mostrador. La primera emite tickets A/B/C desde un binario Win32 en C, imprime por ESC/POS y muestra un panel de llamados. La segunda es un carrito web estático para pantalla vertical de 1080x1920. La tercera cobra con una terminal Getnet PAX IM30 desde una aplicación FastAPI.</p><p>Cada versión responde a un contexto distinto de despliegue, y esa es la tesis del conjunto: no hay un solo patrón correcto para un tótem. El de tickets evita instalador, runtime y base de datos; el carrito evita backend; la integración de pago aísla el SDK del proveedor. El costo también es distinto en cada caso, y está declarado: sin validación en hardware, con detección de impresora a ciegas y con una resolución única.</p></div></div></section><section class="section" id="versiones"><div class="wrap">
   <div class="section-head reveal"><div class="kicker">02 — Versiones</div><h2>La historia, completa.</h2><p class="section-sub">Cada carpeta conserva una etapa del proyecto. No se borraron las anteriores: se pusieron en contexto.</p></div>
   <div class="versions"><article class="version reveal">
   <div class="version-top"><h3>TotemAutoatencion</h3><span class="count">32 archivos</span></div>
@@ -212,23 +237,23 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
   <a href="https://github.com/jmadasme/totems-autoatencion/tree/main/versions/TotemGetnetIM30" target="_blank" rel="noopener">Ver carpeta <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </article></div>
 </div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">01 — La idea</div><h2>Un tótem que no depende de un framework</h2><p class="section-sub">C puro, Win32 y una impresora térmica por COM. Sin Electron, sin navegador y sin instalador gigante.</p></div><div class="rich reveal"><div class="card-grid">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">03 — La idea</div><h2>Un tótem que no depende de un framework</h2><p class="section-sub">C puro, Win32 y una impresora térmica por COM. Sin Electron, sin navegador y sin instalador gigante.</p></div><div class="rich reveal"><div class="card-grid">
 <div class="card"><h3>El problema</h3><div><div></div><p>Los tótems comerciales suelen ser pesados, dependen de un navegador y de drivers del fabricante. En hardware modesto, eso significa arranques lentos y fallas difíciles de diagnosticar.</p></div></div>
 <div class="card"><h3>La solución</h3><div><div></div><p>Una aplicación Win32 nativa que dibuja la interfaz, atiende la pantalla táctil y habla ESC/POS directamente con la impresora Masung MS800 por el puerto COM. Los tickets y los llamados se generan sin intermediarios.</p></div></div>
 </div></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">02 — El recorrido</div><h2>Cómo funciona, paso a paso</h2><p class="section-sub">El flujo del usuario, de principio a fin.</p></div><div class="rich reveal"><div class="timeline">
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">04 — El recorrido</div><h2>Cómo funciona, paso a paso</h2><p class="section-sub">El flujo del usuario, de principio a fin.</p></div><div class="rich reveal"><div class="timeline">
 <div class="step"><div class="step-n">01</div><h4>Elegir servicio</h4><div><p>El usuario toca uno de los tres servicios en la pantalla vertical.</p></div></div>
 <div class="step"><div class="step-n">02</div><h4>Emitir ticket</h4><div><p>El programa genera el ticket A, B o C y lo envía por ESC/POS a la impresora.</p></div></div>
 <div class="step"><div class="step-n">03</div><h4>Mostrar llamado</h4><div><p>El número se escribe en llamados.txt y se muestra en la pantalla.</p></div></div>
 <div class="step"><div class="step-n">04</div><h4>Continuar</h4><div><p>El tótem vuelve al inicio y queda listo para el siguiente usuario.</p></div></div>
 </div></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">03 — Bajo el capó</div><h2>Win32 hasta el hueso</h2><p class="section-sub">La interfaz, la impresora y el estado viven en el mismo proceso nativo.</p></div><div class="rich reveal"><figure><img src="assets/rich/architecture.svg" alt="Arquitectura del tótem Win32 con pantalla táctil e impresora ESC/POS" loading="lazy"><figcaption>El tótem dibuja, imprime y registra llamados sin capas web.</figcaption></figure>
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Bajo el capó</div><h2>Win32 hasta el hueso</h2><p class="section-sub">La interfaz, la impresora y el estado viven en el mismo proceso nativo.</p></div><div class="rich reveal"><figure><img src="assets/rich/architecture.svg" alt="Arquitectura del tótem Win32 con pantalla táctil e impresora ESC/POS" loading="lazy"><figcaption>El tótem dibuja, imprime y registra llamados sin capas web.</figcaption></figure>
 <div class="card-grid">
 <div class="card"><h3>ESC/POS directo</h3><div><p>Los comandos se envían al puerto COM de la impresora, sin driver propietario.</p></div></div>
 <div class="card"><h3>Pantalla vertical</h3><div><p>La UI está compuesta para 1080×1920 y se opera por toque.</p></div></div>
 <div class="card"><h3>Estado simple</h3><div><p>Los contadores y el archivo de llamados son texto plano, fáciles de respaldar.</p></div></div>
 </div></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">04 — Lo que lo hace distinto</div><h2>Decisiones de ingeniería</h2><p class="section-sub">Menos piezas, menos lugares donde fallar.</p></div><div class="rich reveal"><div class="features">
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">06 — Lo que lo hace distinto</div><h2>Decisiones de ingeniería</h2><p class="section-sub">Menos piezas, menos lugares donde fallar.</p></div><div class="rich reveal"><div class="features">
 <div class="feature"><h3>UI táctil</h3><div><p>Botones grandes y flujo de tres servicios.</p></div></div>
 <div class="feature"><h3>ESC/POS</h3><div><p>Impresión directa en la Masung MS800 por COM.</p></div></div>
 <div class="feature"><h3>Contadores</h3><div><p>Contadores.dat para numerar tickets sin base de datos.</p></div></div>
@@ -236,20 +261,19 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 <div class="feature"><h3>C nativo</h3><div><p>Binario pequeño, sin runtime web.</p></div></div>
 <div class="feature"><h3>Sin driver</h3><div><p>La impresora se maneja por comandos, no por un driver del fabricante.</p></div></div>
 </div></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="rich reveal"><figure><img src="assets/rich/deployment.svg" alt="Totem Autoatención — deployment" loading="lazy"><figcaption>Deployment</figcaption></figure>
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">07 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="rich reveal"><figure><img src="assets/rich/deployment.svg" alt="Totem Autoatención — deployment" loading="lazy"><figcaption>Deployment</figcaption></figure>
 <figure><img src="assets/rich/ticket-flow.svg" alt="Totem Autoatención — ticket flow" loading="lazy"><figcaption>Ticket Flow</figcaption></figure></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">06 — Stack y arranque</div><h2>Con qué está construido</h2><p class="section-sub">C con la API Win32, compilado con MinGW. La interfaz se dibuja con GDI y la impresora se abre como un archivo COM.</p></div><div class="rich reveal"><p>C Win32 GDI ESC/POS MinGW Windows 10/11 totem.exe y obj/ no se versionan. Los BMP de recursos sí, porque son parte de la UI.</p>
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">08 — Stack y arranque</div><h2>Con qué está construido</h2><p class="section-sub">C con la API Win32, compilado con MinGW. La interfaz se dibuja con GDI y la impresora se abre como un archivo COM.</p></div><div class="rich reveal"><p>C Win32 GDI ESC/POS MinGW Windows 10/11 totem.exe y obj/ no se versionan. Los BMP de recursos sí, porque son parte de la UI.</p>
 <p>Totem · compilación</p>
 <pre><span>$</span> mingw32-make
 <span># Ejecutar totem.exe en Windows 10/11</span>
 <span># Configurar el puerto COM de la impresora</span></pre></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">07 — Documentación</div><h2>Todo está escrito</h2><p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p></div><div class="rich reveal"><div class="card-grid">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">09 — Documentación</div><h2>Todo está escrito</h2><p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p></div><div class="rich reveal"><div class="card-grid">
 <a class="card" href=""><h3>La guía completa</h3><p>Hardware, pantalla, impresora, compilación y operación.</p></a>
 <a class="card" href=""><h3>Manual de operación</h3><p>Flujo, tickets, llamados, configuración y errores.</p></a>
 <a class="card" href=""><h3>Guía de código</h3><p>Win32, GDI, ESC/POS y estructura.</p></a>
 <a class="card" href=""><h3>Referencias</h3><p>Win32, ESC/POS, MinGW y Masung.</p></a>
-</div></div></div></section>
-<section class="cta"><div class="wrap"><div class="cta-box reveal">
+</div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Lo que no funcionó</div><h2>Los tropiezos, documentados</h2><p class="section-sub">Las primeras versiones existen para que estos errores no se repitan: cada una dejó una decisión de diseño verificable.</p></div><div class="fail-grid reveal"><div class="fail"><div class="v">TotemAutoatencion</div><h3>Rama muerta del número en tamaño triple</h3><p>El código tenía una rama para imprimir el número a triple ancho y alto, pero nunca se ejecutaba: el formato emite «  Numero: A-041» y la detección buscaba líneas que empezaran por A, B o C. La rama quedó muerta y se documentó; activarla exige cambiar el formato del ticket.</p></div><div class="fail"><div class="v">TotemAutoatencion</div><h3>Ejecutable de 9 MB por bitmaps</h3><p>El primer enlace superaba los 9 MB porque los BMP de botones iban a 600x600 sin compresión y el fondo negro pesaba 2,5 MB. Se compiló con -Os -s y se aceptó el tamaño para conservar el ovalado. Quedó anotado que btn_negro.bmp sigue declarado sin uso.</p></div><div class="fail"><div class="v">TotemCarrito</div><h3>Confirmar sin cobro real</h3><p>El botón Confirmar solo mostraba una animación de éxito y vaciaba el carrito. No había integración de pago ni persistencia: al recargar se perdía todo. Se documentó como simulación y la versión Getnet IM30 cubrió después el cobro con terminal y comprobante.</p></div><div class="fail"><div class="v">TotemAutoatencion</div><h3>Documentación contra el plan, no contra el código</h3><p>La documentación previa describía funciones inexistentes, un módulo display.c que nunca se creó y un comando ESC G en lugar de ESC E. Se reescribieron README, datasheet y developer leyendo el código línea por línea. La regla quedó fijada: la fuente de verdad es el código.</p></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Ficha de evaluación</div><h2>Cómo se mide este proyecto</h2><p class="section-sub">Seis criterios con la misma escala en todo el catálogo, para comparar sin marketing.</p></div><div class="rating-head reveal"><div class="rating-avg">3.5<small>/5</small></div><div><strong>Madurez global</strong><p>Tres formas concretas de autoatención, cada una con su compromiso técnico y su costo de despliegue. El conjunto vale por el contraste; la validación física sigue pendiente.</p></div></div><div class="rating reveal"><div class="rating-row"><div class="rating-name">Madurez</div><div class="rating-bar"><i style="width:60%"></i></div><div class="rating-score">3/5</div><div class="rating-note">Tres implementaciones; la de pagos tiene 51 pruebas, pero el tótem de tickets no se validó en hardware.</div></div><div class="rating-row"><div class="rating-name">Reproducibilidad</div><div class="rating-bar"><i style="width:60%"></i></div><div class="rating-score">3/5</div><div class="rating-note">Makefile con MinGW y pruebas en Getnet; el ejecutable de 6,9 MB y el SDK no se versionan.</div></div><div class="rating-row"><div class="rating-name">Documentación</div><div class="rating-bar"><i style="width:80%"></i></div><div class="rating-score">4/5</div><div class="rating-note">README por versión, bitácora, datasheet y developer; las cifras se verificaron contra el código.</div></div><div class="rating-row"><div class="rating-name">Honestidad de límites</div><div class="rating-bar"><i style="width:100%"></i></div><div class="rating-score">5/5</div><div class="rating-note">Declara detección de impresora a ciegas, ausencia de confirmación de impresión y falta de pruebas físicas.</div></div><div class="rating-row"><div class="rating-name">Valor demostrativo</div><div class="rating-bar"><i style="width:80%"></i></div><div class="rating-score">4/5</div><div class="rating-note">Contrasta tres patrones de autoatención: binario nativo, web estático y cobro con terminal.</div></div><div class="rating-row"><div class="rating-name">Facilidad de despliegue</div><div class="rating-bar"><i style="width:40%"></i></div><div class="rating-score">2/5</div><div class="rating-note">Compilación Win32, ESC/POS y terminal Getnet; el carrito exige 1080x1920 exactos.</div></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Preguntas típicas</div><h2>Lo que suelen preguntar</h2></div><div class="faq reveal"><details><summary>¿Qué tótem elijo?</summary><p>TotemAutoatencion para filas y tickets; TotemCarrito para pedidos; Getnet si necesitás cobrar con tarjeta.</p></details><details><summary>¿Corre en Linux?</summary><p>El tótem de tickets es Win32. El carrito es web y corre en cualquier navegador.</p></details><details><summary>¿Dónde están los datos?</summary><p>El tótem de tickets no usa base de datos; el carrito es estático.</p></details><details><summary>¿Se incluye el SDK de Getnet?</summary><p>No. Pesaba cientos de MB y tiene licencia del proveedor.</p></details><details><summary>¿Puedo cambiar la resolución?</summary><p>El carrito está diseñado para 1080x1920; adaptarlo requiere revisar el layout.</p></details></div></div></section><section class="cta"><div class="wrap"><div class="cta-box reveal">
   <div class="kicker">Siguiente paso</div><h2>¿Te animás?</h2>
   <p>Usá esta familia como base para tótems de autoatención. Está documentada para que puedas entenderla, ejecutarla y continuarla sin adivinar.</p>
   <div class="hero-actions" style="justify-content:center"><a class="btn btn-primary" href="https://github.com/jmadasme/totems-autoatencion" target="_blank" rel="noopener">Abrir el repositorio <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-ghost" href="/iot/">Ver más de IoT</a></div>

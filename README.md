@@ -12,8 +12,6 @@ Cada carpeta conserva el contenido original de su etapa, sin `.git`, dependencia
 instaladas ni binarios pesados. La documentación de operación y de código está en
 [`docs/`](docs/), y el sitio del proyecto en [`docs/index.html`](docs/index.html).
 
-> **Nota de preservación:** se removieron credenciales, claves o tokens detectados en 4 archivo(s) de esta familia. Los ejemplos y plantillas seguras se conservan.
-
 ## Índice de versiones
 
 | Versión | Qué aporta | Archivos |
@@ -37,6 +35,64 @@ cd ../TotemCarrito && python3 -m http.server 8080
 
 El ejecutable compilado de 6.9 MB no se versiona. El SDK de Getnet no se redistribuye: se enlaza su origen.
 
+<!-- ficha -->
+## Ficha de evaluación
+
+**Madurez global: 3.5/5**
+
+| Criterio | Nota | Evidencia |
+|---|---:|---|
+| Madurez | 3/5 | Tres implementaciones; la de pagos tiene 51 pruebas, pero el tótem de tickets no se validó en hardware. |
+| Reproducibilidad | 3/5 | Makefile con MinGW y pruebas en Getnet; el ejecutable de 6,9 MB y el SDK no se versionan. |
+| Documentación | 4/5 | README por versión, bitácora, datasheet y developer; las cifras se verificaron contra el código. |
+| Honestidad de límites | 5/5 | Declara detección de impresora a ciegas, ausencia de confirmación de impresión y falta de pruebas físicas. |
+| Valor demostrativo | 4/5 | Contrasta tres patrones de autoatención: binario nativo, web estático y cobro con terminal. |
+| Facilidad de despliegue | 2/5 | Compilación Win32, ESC/POS y terminal Getnet; el carrito exige 1080x1920 exactos. |
+
+Tres formas concretas de autoatención, cada una con su compromiso técnico y su costo de despliegue. El conjunto vale por el contraste; la validación física sigue pendiente.
+
+## Lo que no funcionó
+
+### TotemAutoatencion — Rama muerta del número en tamaño triple
+
+El código tenía una rama para imprimir el número a triple ancho y alto, pero nunca se ejecutaba: el formato emite «  Numero: A-041» y la detección buscaba líneas que empezaran por A, B o C. La rama quedó muerta y se documentó; activarla exige cambiar el formato del ticket.
+
+### TotemAutoatencion — Ejecutable de 9 MB por bitmaps
+
+El primer enlace superaba los 9 MB porque los BMP de botones iban a 600x600 sin compresión y el fondo negro pesaba 2,5 MB. Se compiló con -Os -s y se aceptó el tamaño para conservar el ovalado. Quedó anotado que btn_negro.bmp sigue declarado sin uso.
+
+### TotemCarrito — Confirmar sin cobro real
+
+El botón Confirmar solo mostraba una animación de éxito y vaciaba el carrito. No había integración de pago ni persistencia: al recargar se perdía todo. Se documentó como simulación y la versión Getnet IM30 cubrió después el cobro con terminal y comprobante.
+
+### TotemAutoatencion — Documentación contra el plan, no contra el código
+
+La documentación previa describía funciones inexistentes, un módulo display.c que nunca se creó y un comando ESC G en lugar de ESC E. Se reescribieron README, datasheet y developer leyendo el código línea por línea. La regla quedó fijada: la fuente de verdad es el código.
+
+## Preguntas típicas
+
+**¿Qué tótem elijo?**
+
+TotemAutoatencion para filas y tickets; TotemCarrito para pedidos; Getnet si necesitás cobrar con tarjeta.
+
+**¿Corre en Linux?**
+
+El tótem de tickets es Win32. El carrito es web y corre en cualquier navegador.
+
+**¿Dónde están los datos?**
+
+El tótem de tickets no usa base de datos; el carrito es estático.
+
+**¿Se incluye el SDK de Getnet?**
+
+No. Pesaba cientos de MB y tiene licencia del proveedor.
+
+**¿Puedo cambiar la resolución?**
+
+El carrito está diseñado para 1080x1920; adaptarlo requiere revisar el layout.
+
+<!-- /ficha -->
+
 ## Documentación
 
 - [`docs/datasheet.md`](docs/datasheet.md) — instalación, operación y límites.
@@ -44,11 +100,11 @@ El ejecutable compilado de 6.9 MB no se versiona. El SDK de Getnet no se redistr
 - [`docs/REFERENCES.md`](docs/REFERENCES.md) — estándares, librerías y fuentes.
 - [`docs/index.html`](docs/index.html) — página del proyecto (GitHub Pages).
 
-## Alcance y honestidad
+## El proyecto en detalle
 
 <div align="center">
 
-## Tótem de Autoatención
+### Tótem de Autoatención
 
 **Emisión de tickets y panel de llamados para oficinas de atención al público, en C puro sobre Win32 API.**
 
