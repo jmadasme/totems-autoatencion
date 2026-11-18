@@ -191,12 +191,14 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 
 </style>
 <link rel="stylesheet" href="assets/community.css?v=1">
+<link href="rec/player.css?v=1" rel="stylesheet"/>
 </head>
 <body>
 <header class="nav"><div class="wrap nav-in">
   <a class="brand" href="/"><span class="brand-mark"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></svg></span><span>jmadasme<span style="color:var(--accent)">.</span>portfolio</span></a>
   <nav class="nav-links">
-    <a href="#proyecto">Proyecto</a><a href="#versiones">Versiones</a><a href="#stack">Stack</a><a href="#docs">Docs</a><a href="#comunidad">Comunidad</a>
+    <a href="#proyecto">Proyecto</a><a href="#versiones">Versiones</a><a href="#stack">Stack</a><a href="#video">Video</a>
+<a href="#docs">Docs</a><a href="#comunidad">Comunidad</a>
     <a class="btn btn-ghost" style="padding:9px 15px" href="/iot/">← IoT</a>
   </nav>
 </div></header>
@@ -221,7 +223,46 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 
 <section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-num">3</div><div class="stat-label">versiones</div></div><div class="stat"><div class="stat-num">1080x1920</div><div class="stat-label">pantalla</div></div><div class="stat"><div class="stat-num">1</div><div class="stat-label">exe</div></div><div class="stat"><div class="stat-num">Getnet</div><div class="stat-label">pagos</div></div></div></section>
 
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2></div><div class="rich reveal"><p>Tótems de Autoatención reúne tres implementaciones del mismo problema: atender a alguien sin una persona detrás del mostrador. La primera emite tickets A/B/C desde un binario Win32 en C, imprime por ESC/POS y muestra un panel de llamados. La segunda es un carrito web estático para pantalla vertical de 1080x1920. La tercera cobra con una terminal Getnet PAX IM30 desde una aplicación FastAPI.</p><p>Cada versión responde a un contexto distinto de despliegue, y esa es la tesis del conjunto: no hay un solo patrón correcto para un tótem. El de tickets evita instalador, runtime y base de datos; el carrito evita backend; la integración de pago aísla el SDK del proveedor. El costo también es distinto en cada caso, y está declarado: sin validación en hardware, con detección de impresora a ciegas y con una resolución única.</p></div></div></section><section class="section" id="versiones"><div class="wrap">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2></div><div class="rich reveal"><p>Tótems de Autoatención reúne tres implementaciones del mismo problema: atender a alguien sin una persona detrás del mostrador. La primera emite tickets A/B/C desde un binario Win32 en C, imprime por ESC/POS y muestra un panel de llamados. La segunda es un carrito web estático para pantalla vertical de 1080x1920. La tercera cobra con una terminal Getnet PAX IM30 desde una aplicación FastAPI.</p><p>Cada versión responde a un contexto distinto de despliegue, y esa es la tesis del conjunto: no hay un solo patrón correcto para un tótem. El de tickets evita instalador, runtime y base de datos; el carrito evita backend; la integración de pago aísla el SDK del proveedor. El costo también es distinto en cada caso, y está declarado: sin validación en hardware, con detección de impresora a ciegas y con una resolución única.</p></div></div></section>
+<section class="section tight rec-section" id="video" style="--accent:#2E7DFF;--accent2:#14F195">
+<div class="wrap">
+<div class="rec-kicker">REC · VIDEO · 3:14</div>
+<h2 class="rec-h2">Tótem de autoatención en Win32 puro</h2>
+<p class="rec-lead">Un tótem vertical de 1080x1920 escrito en C con Win32 y GDI, sin frameworks ni runtime adicional. El video recorre la ventana fullscreen, la máquina de estados, la generación de tickets A/B/C con contador diario, la impresión ESC/POS en una Masung MS800 y el panel de llamados que se refresca desde un archivo de texto.</p>
+<div class="rec-banner">
+<span class="rec-banner-icon">📋</span>
+<strong>Puedes copiar y pegar los comandos del video desde el video !!!</strong>
+<span>Pausá, seleccioná el texto de la terminal y copiá.</span>
+</div>
+<div class="rec-shell">
+<div class="rec-bar"><i></i><i></i><i></i><span class="rec-title">Tótem de autoatención en Win32 puro · asciinema</span><span class="rec-rec"><b></b>REC</span></div>
+<div class="rec-screen-wrap">
+<div class="rec-screen" id="rec-screen"></div>
+<div class="rec-poster" id="rec-poster">
+<div class="rec-kicker">ASCIINEMA · 3:14</div>
+<h3>Tótem de autoatención en Win32 puro</h3>
+<p>Un tótem vertical de 1080x1920 escrito en C con Win32 y GDI, sin frameworks ni runtime adicional. El video recorre la ventana fullscreen, la máquina de estados, la generación de tickets A/B/C con contador diario, la impresión ESC/POS en una Masung MS800 y el panel de llamados que se refresca desde un archivo de texto.</p>
+<div class="rec-poster-meta">totems-autoatencion · código real</div>
+<button class="rec-btn rec-primary" id="rec-start" type="button">▶ Reproducir</button>
+</div>
+</div>
+<div class="rec-controls">
+<button class="rec-btn rec-primary" id="rec-play" type="button">▶ Reproducir</button>
+<button class="rec-btn" id="rec-restart" type="button">↺ Reiniciar</button>
+<input class="rec-progress" id="rec-range" type="range" min="0" max="1000" value="0" aria-label="Progreso"/>
+<span class="rec-time" id="rec-time">0:00 / 3:14</span>
+<select class="rec-speed" id="rec-speed" aria-label="Velocidad"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+<button class="rec-btn" id="rec-full" type="button" title="Pantalla completa">⛶</button>
+<button class="rec-btn" id="rec-copy" type="button">⧉ Copiar comandos</button>
+<a class="rec-download" href="rec/totems-autoatencion.cast" download>descargar .cast</a>
+</div>
+</div>
+<p class="rec-note">El binario se ejecuta en Windows; la compilación cruzada con MinGW-w64 se puede hacer desde Linux.</p>
+<div class="rec-chapters"><span class="rec-chip"><b>0:06</b> EL PROBLEMA</span><span class="rec-chip"><b>0:20</b> ARQUITECTURA</span><span class="rec-chip"><b>0:35</b> FLUJO</span><span class="rec-chip"><b>0:51</b> TICKETS</span><span class="rec-chip"><b>1:06</b> TICKETS</span><span class="rec-chip"><b>1:20</b> ESC/POS</span><span class="rec-chip"><b>1:35</b> ESC/POS</span><span class="rec-chip"><b>1:48</b> ESC/POS</span><span class="rec-chip"><b>2:04</b> LLAMADOS</span><span class="rec-chip"><b>2:21</b> INTERFAZ</span><span class="rec-chip"><b>2:36</b> INTERFAZ</span><span class="rec-chip"><b>2:50</b> CÓMO EJECUTARLO</span></div>
+</div>
+</section>
+
+<section class="section" id="versiones"><div class="wrap">
   <div class="section-head reveal"><div class="kicker">02 — Versiones</div><h2>La historia, completa.</h2><p class="section-sub">Cada carpeta conserva una etapa del proyecto. No se borraron las anteriores: se pusieron en contexto.</p></div>
   <div class="versions"><article class="version reveal">
   <div class="version-top"><h3>TotemAutoatencion</h3><span class="count">32 archivos</span></div>
@@ -286,5 +327,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 <script>window.PORTFOLIO_COMMUNITY={account:"jmadasme",repo:"totems-autoatencion",coinNamespace:"jmadasme-totems-autoatencion-coins-v1",faqs:[{"q": "¿Qué tótem elijo?", "a": "TotemAutoatencion para filas y tickets; TotemCarrito para pedidos; Getnet si necesitás cobrar con tarjeta."}, {"q": "¿Corre en Linux?", "a": "El tótem de tickets es Win32. El carrito es web y corre en cualquier navegador."}, {"q": "¿Dónde están los datos?", "a": "El tótem de tickets no usa base de datos; el carrito es estático."}, {"q": "¿Se incluye el SDK de Getnet?", "a": "No. Pesaba cientos de MB y tiene licencia del proveedor."}, {"q": "¿Puedo cambiar la resolución?", "a": "El carrito está diseñado para 1080x1920; adaptarlo requiere revisar el layout."}]};</script>
 <script src="assets/community.js?v=2" defer></script>
 
+<script defer src="rec/totems-autoatencion.cast.js?v=1"></script>
+<script defer src="rec/player.js?v=1"></script>
 </body>
 </html>
